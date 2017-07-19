@@ -14,6 +14,7 @@
             <th>Price</th>
             <th>Description</th>
             <th></th>
+            <th></th>
         </tr>
         <?php foreach ($products as $product): ?>
         <tr>
@@ -24,6 +25,9 @@
             <td>
                 <a class="add_to_cart_btn" href="/products/<?= $product->id ?>/edit">Edit product</a>
             </td>
+            <td>
+                <a class="add_to_cart_btn delete_button" data-name="<?= $product->name ?>" href="/products/<?= $product->id ?>/delete">Delete product</a>
+            </td>
         </tr>
         <?php endforeach; ?>
     </table>
@@ -31,4 +35,11 @@
     <h2>No products in the DB.</h2>
     <?php endif; ?>
     <a class="go_to_cart" href="/products/create">Add new product</a>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+             jQuery('a.delete_button').click(function() {
+                 return confirm("Are you sure you want to delete " + jQuery(this).data('name') + "?");
+             });
+        });
+    </script>
 @endsection

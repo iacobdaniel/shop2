@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Input;
 
 @section ('content')
     <h1>Shop2 - Edit <?= " " ?></h1>
-    <form action="/patch_product" method="post" enctype="multipart/form-data">
+    <form action="/update" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         <input type="hidden" name="id" value="<?= $product->id ?>">
         <label for="name">Name</label>
@@ -37,4 +37,13 @@ use Illuminate\Support\Facades\Input;
         <br>
         <button class="add_to_cart_btn" type="submit">Save</button>
     </form>
+    <?php if ($errors->any()): ?>
+        <div class="alert alert-danger">
+            <ul>
+                <?php foreach ($errors->all() as $error): ?>
+                    <li><?= $error ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 @endsection

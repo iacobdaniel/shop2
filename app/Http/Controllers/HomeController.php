@@ -24,6 +24,14 @@ class HomeController extends Controller
         }
         Session::save();
         
+        $order_mail = Input::get('mail');
+        if(isset($order_mail)) {
+            if($order_mail == '1') {
+                $order_mail = true;
+            } else {
+                $order_mail = true;
+            }
+        }
         $cart = Session::get('cart');
         if(!isset($cart)) {
             $products = Product::all();
@@ -38,7 +46,8 @@ class HomeController extends Controller
         return view('products.index', [
             'products' => $products,
             'prod_exist' => $prod_exist,
-            'lang' => Session::get('lang')
+            'lang' => Session::get('lang'),
+            'order_mail' => $order_mail
         ]);
     }
 }

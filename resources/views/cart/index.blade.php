@@ -28,6 +28,28 @@
         </tr>
         <?php endforeach; ?>
     </table>
+    <form action="/email" method="post">
+        {{ csrf_field() }}
+        <input required placeholder="<?php echo translate("Name"); ?>" type="text" name="client">
+        <br>
+        <br>
+        <input required placeholder="<?php echo translate("email"); ?>" type="text" name="email">
+        <br>
+        <br>
+        <textarea required placeholder="<?php echo translate("Other details... (address and/or any special request)"); ?>" name="details"></textarea>
+        <br>
+        <br>
+        <button type="submit"><?php echo translate("Order now!"); ?></button>
+    </form>
+    <?php if ($errors->any()): ?>
+        <div class="alert alert-danger">
+            <ul>
+                <?php foreach ($errors->all() as $error): ?>
+                    <li><?= $error ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
     <?php else: ?>
     <h2><?= translate('Cart empty') ?></h2>
     <?php endif; ?>

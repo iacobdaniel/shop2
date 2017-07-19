@@ -36,4 +36,14 @@
     <h2><?= translate('All the products are already in the cart or there are no products available.') ?></h2>
     <?php endif; ?>
     <a class="go_to_cart" href="/cart"><?= translate('See the cart') ?></a>
+    <?php if($order_mail): ?>
+    <div class="mail_success">
+        <p>Your order has been successfully sent!</p>
+    </div>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            jQuery(".mail_success").delay(5000).fadeOut(300);
+        });
+    </script>
+    <?php endif; ?>
 @endsection

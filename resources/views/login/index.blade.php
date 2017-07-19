@@ -9,17 +9,26 @@
     <p>
         <a href="/">Go to frontend</a>
     </p>
-    <?= $error ? '<p class="file_upload_error_notif">The username or password are incorrect</p>' : '' ?>
     <form action="/login" method="post">
         {{ csrf_field() }}
         <label for="user">Username: </label>
-        <input type="text" name="user">
+        <input required type="text" name="user">
         <br>
         <br>
         <label for="password">Password: </label>
-        <input type="password" name="password">
+        <input required type="password" name="password">
         <br>
         <br>
         <button type="submit">Login</button>
     </form>
+    <?php if ($errors->any() || $error): ?>
+        <div class="alert alert-danger">
+            <ul>
+                <?php foreach ($errors->all() as $error): ?>
+                    <li><?= $error ?></li>
+                <?php endforeach; ?>
+                <?= $error ? '<li>The username or password are incorrect</li>' : '' ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 @endsection

@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Product;
 
 class LoginController extends Controller
 {
-    public function index() {
+    public function index() 
+    {
         $err_param = Input::get('error');
         if(isset($err_param)) {
             if($err_param == '1') {
@@ -31,7 +32,12 @@ class LoginController extends Controller
         }
     }
     
-    public function login(Request $request) {
+    public function login(Request $request) 
+    {
+        $this->validate($request, [
+            'user' => 'required',
+            'password' => 'required'
+        ]);
         $user = strip_tags(request('user'));
         $password = strip_tags(request('password'));
         if(ADMIN_USER == $user && ADMIN_PASS == $password) {
@@ -41,13 +47,14 @@ class LoginController extends Controller
         }
         Session::save();
         if(Session::get('admin')) {
-            return redirect('/admin');    
+            return redirect('/admin');
         } else {
             return redirect('/login?error=1');
         }
     }
     
-    public function logout() {
+    public function logout() 
+    {
         Session::put('admin', false);
         Session::save();
         return redirect('/login');

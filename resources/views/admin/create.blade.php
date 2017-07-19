@@ -6,7 +6,7 @@
 
 @section ('content')
     <h1>Shop2 - Create new product</h1>
-    <form action="/new_product" method="post" enctype="multipart/form-data">
+    <form action="/create" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         <label for="name">Name</label>
         <br>
@@ -30,4 +30,13 @@
         <br>
         <button class="add_to_cart_btn" type="submit">Save</button>
     </form>
+    <?php if ($errors->any()): ?>
+        <div class="alert alert-danger">
+            <ul>
+                <?php foreach ($errors->all() as $error): ?>
+                    <li><?= $error ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 @endsection
