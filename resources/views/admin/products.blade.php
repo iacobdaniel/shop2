@@ -23,10 +23,10 @@
             <td><?= $product->price ?></td>
             <td><?= $product->description ?></td>
             <td>
-                <a class="add_to_cart_btn" href="/products/<?= $product->id ?>/edit">Edit product</a>
+                <a class="add_to_cart_btn" href="/products/edit/<?= $product->id ?>">Edit product</a>
             </td>
             <td>
-                <a class="add_to_cart_btn delete_button" data-name="<?= $product->name ?>" href="/products/<?= $product->id ?>/delete">Delete product</a>
+                <a class="add_to_cart_btn delete_button" data-name="<?= $product->name ?>" href="/products/delete/<?= $product->id ?>">Delete product</a>
             </td>
         </tr>
         <?php endforeach; ?>
@@ -34,7 +34,7 @@
     <?php else: ?>
     <h2>No products in the DB.</h2>
     <?php endif; ?>
-    <a class="go_to_cart" href="/products/create">Add new product</a>
+    <a class="go_to_cart" href="/products/edit/new">Add new product</a>
     <script type="text/javascript">
         jQuery(document).ready(function () {
              jQuery('a.delete_button').click(function() {

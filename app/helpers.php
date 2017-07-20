@@ -16,4 +16,5 @@ function translate($phrase)
         return $phrase;
     }
 }
+
 ?>

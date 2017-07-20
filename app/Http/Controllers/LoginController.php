@@ -40,7 +40,7 @@ class LoginController extends Controller
         ]);
         $user = strip_tags(request('user'));
         $password = strip_tags(request('password'));
-        if(ADMIN_USER == $user && ADMIN_PASS == $password) {
+        if(config('app.admin_user') == $user && config('app.admin_pass') == $password) {
             Session::put('admin', true);
         } else {
             Session::put('admin', false);
