@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         $lang = Input::get('lang');
         if(isset($lang)) {
-            $languages = explode(',', LANGUAGES);
+            $languages = explode(',', config('app.languages_allowed'));
             if(in_array($lang, $languages)) {
                 Session::put('lang', $lang);
             } else {

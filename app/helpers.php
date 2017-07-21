@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Session;
 function translate($phrase) 
 {
     $set_lang = Session::get('lang');
-    if(in_array($set_lang, explode(',', LANGUAGES))) {
+    if(in_array($set_lang, explode(',', config('app.languages_allowed')))) {
         $phrases = File::getRequire(resource_path() . '/lang/' . $set_lang . '/phrases.php');
         if(isset($phrases[$phrase])) {
             return $phrases[$phrase];
